@@ -1,0 +1,28 @@
+.heading{
+    color: white;
+    margin-top: 0%;
+    margin-left: 5%;
+    margin-bottom: 1%;
+    font-size: 50px;
+    font-family:'Times New Roman', Times, serif
+}
+.label{
+    color: white;
+    font-size: 20px;
+}
+
+
+
+.inputs{
+    width: 130%;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.containers{
+    margin-left: 40%;
+    margin-top: 10%;
+}
