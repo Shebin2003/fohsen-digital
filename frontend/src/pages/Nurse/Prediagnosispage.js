@@ -1,6 +1,6 @@
 import React from 'react'
-import Prediagnosis from '../components/Prediagnosis/Prediagnosis'
-import Header from '../components/Header/Header'
+import Prediagnosis from '../../components/Nurse/Prediagnosis/Prediagnosis'
+import Header from '../../components/Header/Header'
 
 function Prediagnosispage() {
   return (

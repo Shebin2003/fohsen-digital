@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 import { Button } from 'react-bootstrap'
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
-import Registrationpage from '../../pages/Registrationpage'
+import Registrationpage from '../../../pages/Nurse/Registrationpage'
 import { useNavigate } from 'react-router-dom';
 const Home = () => {  
   const navigate = useNavigate();
@@ -12,8 +12,7 @@ const Home = () => {
         <h1 className='heading'>CHOOSE YOUR OPTION</h1>
         <div className='d-grid gap-2"'>
             <Button className='button1' variant="outline-light" size='lg' onClick={()=>navigate("/register")}>Register new patient</Button>
-            <Button className='button2' variant="outline-light" size='lg'>Already registered</Button>
-            <Button className='button3' variant="outline-light" size='lg'>Progress</Button>
+            <Button className='button2' variant="outline-light" size='lg' onClick={()=>navigate("/select")}>Already registered</Button>
         </div>
         </div>
     </div>

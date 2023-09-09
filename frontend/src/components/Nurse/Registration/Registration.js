@@ -1,12 +1,14 @@
-import React from 'react'
+import React,{ useContext } from 'react'
 import './Registration.css'
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Detailscontext from '../../../context/details/Detailscontext'
 
 const Basicdetails = () => {
+    const a = useContext(Detailscontext)
     const [inputs , setInputs] = useState({
+        id:a.length+1,
         name:"",
         age:"",
         address:"",
@@ -21,8 +23,8 @@ const Basicdetails = () => {
     const handleSubmit = (event)=>{
         event.preventDefault()
         const newRecord = {...inputs}
-        console.log(newRecord)
-        navigate("/prediagnosis")
+        a.push(newRecord)
+        navigate("/nursehome",{ state:newRecord.id })
     }
     const options = [
         {label:"Male",value:"male"},

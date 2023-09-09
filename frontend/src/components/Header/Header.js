@@ -9,9 +9,9 @@ function Header() {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand as={Link} to="/">Fohsen</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/nursehome">Fohsen</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="Login">Login</Nav.Link>
+            <Nav.Link as={Link} to="/">Login</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

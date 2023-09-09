@@ -1,11 +1,16 @@
-import React from 'react'
+import React,{ useContext,useState } from 'react'
 import './Prediagnosis.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import Consultationcontext from '../../../context/consultation/Consultationcontext'
+import { useLocation } from "react-router-dom";
 
 const Prediagnosis = () => {
+    const location = useLocation();
+    const data = location.state;
+    const a = useContext(Consultationcontext)
     const [inputs , setInputs] = useState({
+        id:data["id"],
         height:"",
         weight:"",
         bp:"",
@@ -17,11 +22,20 @@ const Prediagnosis = () => {
         const value = event.target.value;
         setInputs({...inputs,[name] : value})
       }
+    
+    
     const handleSubmit = (event)=>{
         event.preventDefault()
         const newRecord = {...inputs}
-        console.log(newRecord)
+        a.push(newRecord)
+        for(let i = 0; i < a.length; i++){
+            if(a[i].id==data["id"]){
+                Object.assign(a[i], newRecord)
+            }
+        }
+        console.log(a)
     }
+    
     const options = [
         {label:"alexa",value:"alexa"},
         {label:"max",value:"max"}
