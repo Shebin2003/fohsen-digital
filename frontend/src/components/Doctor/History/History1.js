@@ -1,9 +1,9 @@
 import React,{ useContext } from 'react'
-import './Selection.css'
+import './History1.css'
 import Detailscontext from '../../../context/details/Detailscontext'
 import { useNavigate } from 'react-router-dom';
 
-const Selection = () => {
+const History1 = () => {
     const a = useContext(Detailscontext)
     const navigate = useNavigate();
   return (
@@ -22,7 +22,7 @@ const Selection = () => {
             {a.map((option, index) => {
             return (
               <tr key={index} onClick={() =>{
-                        navigate("/prediagnosis", {state: option })
+                        navigate("/history2", {state: option })
                         }}>
                 <td>{option["id"]}</td>
                 <td>{option["name"]}</td>
@@ -38,4 +38,4 @@ const Selection = () => {
   )
 }
 
-export default Selection
+export default History1

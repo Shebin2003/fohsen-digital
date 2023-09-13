@@ -1,7 +1,6 @@
-import React,{ useContext } from 'react'
+import React,{ useContext,useState } from 'react'
 import './Registration.css'
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Detailscontext from '../../../context/details/Detailscontext'
 
@@ -24,7 +23,7 @@ const Basicdetails = () => {
         event.preventDefault()
         const newRecord = {...inputs}
         a.push(newRecord)
-        navigate("/nursehome",{ state:newRecord.id })
+        navigate("/prediagnosis",{ state:newRecord })
     }
     const options = [
         {label:"Male",value:"male"},

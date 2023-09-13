@@ -1,8 +1,6 @@
 import React from 'react'
 import './Home.css'
 import { Button } from 'react-bootstrap'
-import { BrowserRouter,Route,Routes } from 'react-router-dom';
-import Registrationpage from '../../../pages/Nurse/Registrationpage'
 import { useNavigate } from 'react-router-dom';
 const Home = () => {  
   const navigate = useNavigate();

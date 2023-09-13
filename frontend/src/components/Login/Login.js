@@ -1,6 +1,5 @@
 import React from 'react'
 import './Login.css'
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
@@ -21,7 +20,7 @@ const handleSubmit = (event)=>{
     event.preventDefault()
     const newRecord = {...inputs}
     console.log(newRecord)
-    navigate("/home")
+    
 }
   return (
    <div className='containers'>
@@ -36,6 +35,8 @@ const handleSubmit = (event)=>{
               <input className='inputs' name='password' type='password' onChange={handleInput} value={inputs.password}  />
           </label><br/>
           <Button variant="outline-success" onClick={handleSubmit}>Log in</Button>
+          <Button variant="outline-success" onClick={()=>{navigate("/doctorhome")}}>Doctor</Button>
+          <Button variant="outline-success" onClick={()=>{navigate("/nursehome")}}>Nurse</Button>
         </div>
    </div>
   )

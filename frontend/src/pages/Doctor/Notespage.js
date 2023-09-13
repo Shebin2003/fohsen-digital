@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
-import Home from '../.././components/Doctor/Home/Home'
+import Notes from '../../components/Doctor/Diagnosis/Notes'
 
-const Doctorhomepage = () => {
+const Notespage = () => {
   return (
     <div>
       <Header/>
-      <Home/>
+      <Notes/>
     </div>
   )
 }
 
-export default Doctorhomepage
+export default Notespage

@@ -1,6 +1,5 @@
 import React,{ useContext,useState } from 'react'
 import './Prediagnosis.css'
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Consultationcontext from '../../../context/consultation/Consultationcontext'
 import { useLocation } from "react-router-dom";
@@ -14,8 +13,17 @@ const Prediagnosis = () => {
         height:"",
         weight:"",
         bp:"",
+        date:"",
         temperature:"",
-        diagnosedby:""
+        diagnosedby:"",
+        //Next inputs are temporary(Because we have no server)
+        name:data["name"],
+        c_id:a.length+1,
+        status:"not_consulted",
+        symptoms:"",
+        notes:"",
+        type:"",
+        medicine:""
     })
     const handleInput = (event) => {
         const name = event.target.name;
@@ -28,12 +36,8 @@ const Prediagnosis = () => {
         event.preventDefault()
         const newRecord = {...inputs}
         a.push(newRecord)
-        for(let i = 0; i < a.length; i++){
-            if(a[i].id==data["id"]){
-                Object.assign(a[i], newRecord)
-            }
-        }
-        console.log(a)
+        
+        console.log(a)  
     }
     
     const options = [
@@ -47,7 +51,7 @@ const Prediagnosis = () => {
             <form>
                 <label className='label'>
                     Height :<br/>
-                    <input className='input' name='height' type='number' placeholder='Height in cm' onChange={handleInput} value={inputs.height}/>
+                    <input className='input' name='height' type='text' placeholder='Height in cm' onChange={handleInput} value={inputs.height}/>
                 </label>
                 <br/>
                 <label className='label'>
@@ -65,6 +69,10 @@ const Prediagnosis = () => {
                     <input className='input' name='temperature' type='number' placeholder='Temperature in celsius' onChange={handleInput} value={inputs.temperature}/>
                 </label>
                 <br/>
+                <label className='label'>
+                    Date :<br/>
+                    <input className='input' name='date' type='date' placeholder='Date of consultation' onChange={handleInput} value={inputs.date}/>
+                </label><br/>
                 <label className='label'>
                     Diagnosed by :<br/>
                     <select onChange={handleInput} value={inputs.diagnosedby} name='diagnosedby' >
