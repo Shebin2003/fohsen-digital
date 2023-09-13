@@ -19,7 +19,7 @@ const Prediagnosis = () => {
         //Next inputs are temporary(Because we have no server)
         name:data["name"],
         c_id:a.length+1,
-        status:"not_consulted",
+        status:"pending",
         symptoms:"",
         notes:"",
         type:"",

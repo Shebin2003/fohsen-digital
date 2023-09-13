@@ -27,8 +27,8 @@ CREATE TABLE `consultation` (
   `patient_id` int DEFAULT NULL,
   `date` date DEFAULT NULL,
   `consultation_by` int DEFAULT NULL,
-  `symptoms_description` varchar(100) DEFAULT NULL,
-  `diagnosis_description` varchar(100) DEFAULT NULL,
+  `notes` varchar(50) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`consultation_id`),
   KEY `Patient_Id` (`patient_id`),
   KEY `Consultation_by` (`consultation_by`),
@@ -220,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-28 20:04:17
+-- Dump completed on 2023-09-13 22:51:46

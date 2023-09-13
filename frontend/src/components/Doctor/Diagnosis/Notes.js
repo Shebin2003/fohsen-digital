@@ -14,7 +14,7 @@ const handleChange = (event) => {
   };
 const handleSubmit = () => {
     data["notes"] = inputs
-    data["status"] = "Consulted"
+    data["status"] = "Completed"
     const index = c.findIndex((obj) => obj.c_id==data["c_id"]);
     c[index] = data
     console.log(c)

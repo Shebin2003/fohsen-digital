@@ -17,7 +17,7 @@ const Consultation = () => {
             </thead>
             <tbody>
                     {c.map((option, index) => {
-                  if(option.status==="not_consulted"){
+                  if(option.status==="pending"){
                     return (
                     <tr key={index} onClick={() =>{
                                 navigate("/consultation2",{ state:option })
