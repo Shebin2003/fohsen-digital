@@ -84,7 +84,9 @@ CREATE TABLE `patient_diagnosis` (
   `diagnosis_id` int DEFAULT NULL,
   `consultation_id` int DEFAULT NULL,
   `type` enum('woman','child') DEFAULT NULL,
-  `medicine` varchar(50) DEFAULT NULL
+  `medicine` varchar(50) DEFAULT NULL,
+  KEY `consultation_id` (`consultation_id`),
+  CONSTRAINT `patient_diagnosis_ibfk_1` FOREIGN KEY (`consultation_id`) REFERENCES `consultation` (`consultation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -107,14 +109,13 @@ DROP TABLE IF EXISTS `patient_symptoms`;
 CREATE TABLE `patient_symptoms` (
   `ps_id` int NOT NULL,
   `consultation_id` int DEFAULT NULL,
-  `patient_id` int DEFAULT NULL,
-  `symptoms` int DEFAULT NULL,
   `notes` varchar(100) DEFAULT NULL,
+  `symptoms` int DEFAULT NULL,
   PRIMARY KEY (`ps_id`),
   KEY `Consultation_Id` (`consultation_id`),
-  KEY `Patient_Id` (`patient_id`),
+  KEY `symptoms` (`symptoms`),
   CONSTRAINT `patient_symptoms_ibfk_1` FOREIGN KEY (`consultation_id`) REFERENCES `consultation` (`consultation_id`),
-  CONSTRAINT `patient_symptoms_ibfk_2` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`)
+  CONSTRAINT `patient_symptoms_ibfk_3` FOREIGN KEY (`symptoms`) REFERENCES `symptoms` (`symptom_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -220,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-13 22:51:46
+-- Dump completed on 2023-09-14 11:07:57
