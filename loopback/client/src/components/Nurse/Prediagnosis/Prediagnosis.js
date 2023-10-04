@@ -3,7 +3,7 @@ import './Prediagnosis.css'
 import Button from 'react-bootstrap/Button';
 import Consultationcontext from '../../../context/consultation/Consultationcontext'
 import { useLocation } from "react-router-dom";
-
+import axios from "axios";
 const Prediagnosis = () => {
     const location = useLocation();
     const data = location.state;
@@ -36,7 +36,9 @@ const Prediagnosis = () => {
         event.preventDefault()
         const newRecord = {...inputs}
         a.push(newRecord)
-        
+        axios.get("http://localhost:3000/api/Patients").then((response) => {
+            console.log(response.data)
+          })
         console.log(a)  
     }
     

@@ -1,13 +1,14 @@
-import React,{ useContext,useState } from 'react'
+import React,{ useContext,useState,useEffect } from 'react'
 import './Registration.css'
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import Detailscontext from '../../../context/details/Detailscontext'
+import axios from "axios";
+import Detailscontext from '../../../context/details/Detailscontext';
 
 const Basicdetails = () => {
     const a = useContext(Detailscontext)
     const [inputs , setInputs] = useState({
-        id:a.length+1,
+        patient_id:"",
         name:"",
         age:"",
         address:"",
@@ -19,15 +20,29 @@ const Basicdetails = () => {
         const value = event.target.value;
         setInputs({...inputs,[name] : value})
       }
-    const handleSubmit = (event)=>{
+    const handleSubmit = async(event)=>{
         event.preventDefault()
         const newRecord = {...inputs}
         a.push(newRecord)
+        console.log(newRecord)
+        // axios.request({
+        //     method:'POST',
+        //     url:'http://localhost:3000/api/Patients',
+        //     data:JSON.stringify(newRecord)
+        // }).then(response=>{
+        //     console.log("successfull")
+        // })
+        try {
+            const response = await axios.post('http://localhost:3000/api/Patients', newRecord);
+            console.log(response);
+          } catch (error) {
+            console.log(error);
+          }
         navigate("/prediagnosis",{ state:newRecord })
     }
     const options = [
-        {label:"Male",value:"male"},
-        {label:"Female",value:"female"}
+        {label:"Male",value:"m"},
+        {label:"Female",value:"f"}
     ]
 
   return (

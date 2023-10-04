@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  },
+  "AccessToken": {
+    "dataSource": "fohsenmysql",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "fohsenmysql",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "fohsenmysql",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "fohsenmysql",
+    "public": false
+  },
+  "Patient": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  },
+  "Staff": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  },
+  "Consultation": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  },
+  "PatientDiagnosis": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  },
+  "PatientSymptoms": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  },
+  "PreDiagnosis": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  },
+  "Symptoms": {
+    "dataSource": "fohsenmysql",
+    "public": true
+  }
+}

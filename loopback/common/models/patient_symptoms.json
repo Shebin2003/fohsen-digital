@@ -1,0 +1,85 @@
+{
+  "name": "PatientSymptoms",
+  "options": {
+    "idInjection": false,
+    "mysql": {
+      "schema": "digital_health",
+      "table": "patient_symptoms"
+    },
+    "relations": {
+      "patientSymptomsIbfk1rel": {
+        "model": "Consultation",
+        "type": "belongsTo",
+        "foreignKey": "consultationId"
+      },
+      "patientSymptomsIbfk3rel": {
+        "model": "Symptoms",
+        "type": "belongsTo",
+        "foreignKey": "symptoms"
+      }
+    }
+  },
+  "properties": {
+    "consultationId": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "consultation_id",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "Y"
+      }
+    },
+    "notes": {
+      "type": "String",
+      "required": false,
+      "length": 100,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "notes",
+        "dataType": "varchar",
+        "dataLength": 100,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "Y"
+      }
+    },
+    "psId": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "id": 1,
+      "mysql": {
+        "columnName": "ps_id",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "N"
+      }
+    },
+    "symptoms": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "symptoms",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "Y"
+      }
+    }
+  }
+}

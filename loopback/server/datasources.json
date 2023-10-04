@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "fohsenmysql": {
+    "name": "fohsenmysql",
+    "connector": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "database": "digital_health",
+    "username": "fohsenuser",
+    "password": "Dhilruba123"
+  }
+}
