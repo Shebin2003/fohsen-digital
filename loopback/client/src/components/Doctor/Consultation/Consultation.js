@@ -1,31 +1,42 @@
-import React,{ useContext } from 'react'
+import React,{ useContext,useEffect,useState } from 'react'
 import './Consultation.css'
-import Consultationcontext from '../../../context/consultation/Consultationcontext'
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const Consultation = () => {
-    const c = useContext(Consultationcontext)
+    const [consultationData,setConsultationData] = useState([])
+    useEffect(()=>{
+      async function fetchconsultation(){
+        const request = await axios.get("http://localhost:3000/consultation")
+        setConsultationData(request.data)
+        return request
+      }
+      fetchconsultation()
+    },[])
     const navigate = useNavigate();
   return (
     <div>
       <table className='table'>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
+                    <th>Consultation Id</th>
+                    <th>Patient Name</th>
+                    <th>Gender</th>
+                    <th>Dob</th>
                 </tr>
             </thead>
             <tbody>
-                    {c.map((option, index) => {
-                  if(option.status==="pending"){
-                    return (
+                  {consultationData.map((option, index) => {
+                    return (  
                     <tr key={index} onClick={() =>{
-                                navigate("/consultation2",{ state:option })
+                                navigate("/symptoms",{ state:option })
                                 }}>
-                        <td>{option["c_id"]}</td>
+                        <td>{option["consultation_id"]}</td>
                         <td>{option["name"]}</td>
+                        <td>{option["gender"]}</td>
+                        <td>{option["age"].slice(0,10)}</td>
                     </tr>
-                    );}
+                    );
                 })}  
             </tbody>
       </table>

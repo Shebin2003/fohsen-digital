@@ -1,23 +1,28 @@
 import React,{ useContext,useState } from 'react'
-import { useLocation } from "react-router-dom";
-import Consultationcontext from '../../../context/consultation/Consultationcontext'
+import { useLocation,useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
+import axios from "axios";
 
 const Notes = () => {
-const c = useContext(Consultationcontext)
 const location = useLocation();
 const data = location.state;
-
+const navigate = useNavigate();
 const [inputs , setInputs] = useState("")
 const handleChange = (event) => {
     setInputs(event.target.value);
   };
-const handleSubmit = () => {
-    data["notes"] = inputs
-    data["status"] = "Completed"
-    const index = c.findIndex((obj) => obj.c_id==data["c_id"]);
-    c[index] = data
-    console.log(c)
+const handleSubmit = async() => {
+    const today = new Date();
+    const month = today.getMonth()+1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    const currentDate = year + "/" + month + "/" + date;
+    try {
+      axios.post(`http://localhost:3000/api/Consultations/${data.consultation_id}/replace`,{notes:inputs,status:'completed',date:currentDate,patientId:data['patient_id']});
+      navigate("/doctorhome")
+    } catch (error) {
+      console.log(error);
+    }
 };
   return (
     <div className='container'>

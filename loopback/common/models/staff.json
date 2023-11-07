@@ -41,7 +41,7 @@
     },
     "staffId": {
       "type": "Number",
-      "required": true,
+      "required": false,
       "length": null,
       "precision": 10,
       "scale": 0,

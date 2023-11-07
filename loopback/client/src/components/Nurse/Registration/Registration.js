@@ -3,16 +3,13 @@ import './Registration.css'
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import Detailscontext from '../../../context/details/Detailscontext';
 
 const Basicdetails = () => {
-    const a = useContext(Detailscontext)
     const [inputs , setInputs] = useState({
-        patient_id:"",
         name:"",
         age:"",
         address:"",
-        gender:""
+        gender:"m"
     })
     const navigate = useNavigate();
     const handleInput = (event) => {
@@ -20,26 +17,22 @@ const Basicdetails = () => {
         const value = event.target.value;
         setInputs({...inputs,[name] : value})
       }
-    const handleSubmit = async(event)=>{
+      const handleSubmit = async(event)=>{
         event.preventDefault()
         const newRecord = {...inputs}
-        a.push(newRecord)
-        console.log(newRecord)
-        // axios.request({
-        //     method:'POST',
-        //     url:'http://localhost:3000/api/Patients',
-        //     data:JSON.stringify(newRecord)
-        // }).then(response=>{
-        //     console.log("successfull")
-        // })
         try {
             const response = await axios.post('http://localhost:3000/api/Patients', newRecord);
-            console.log(response);
+            axios.get("http://localhost:3000/api/Patients").then((response) => {
+                const temp = response.data[response.data.length-1]
+                newRecord['patientId'] = temp.patientId
+                navigate("/prediagnosis",{ state:newRecord })
+            })
           } catch (error) {
             console.log(error);
           }
-        navigate("/prediagnosis",{ state:newRecord })
+        
     }
+        
     const options = [
         {label:"Male",value:"m"},
         {label:"Female",value:"f"}
@@ -57,7 +50,7 @@ const Basicdetails = () => {
                 </label>  
                 <br/>
                 <label className='label'>
-                    Age :
+                    Date of birth :
                     <br/>
                     <input className='input' name='age'  type='date' placeholder='Enter your age' onChange={handleInput} value={inputs.age}/>    
                 </label>

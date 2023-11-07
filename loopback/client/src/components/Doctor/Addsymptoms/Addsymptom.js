@@ -1,14 +1,12 @@
 import React,{ useState,useContext } from 'react'
-import Symptomcontext from '../../../context/symptoms/Symptomcontext'
 import { useNavigate,useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import axios from "axios";
 
 const Addsymptoms = () => {
     const location = useLocation();
     const data = location.state;
-    const s = useContext(Symptomcontext)
     const [inputs , setInputs] = useState({
-        s_id:s.length+1,
         name:"",
         description:""
     })
@@ -18,11 +16,14 @@ const Addsymptoms = () => {
         const value = event.target.value;
         setInputs({...inputs,[name] : value})
       }
-    const handleSubmit = (event)=>{
+    const handleSubmit = async(event)=>{
         event.preventDefault()
         const newRecord = {...inputs}
-        s.push(newRecord)
-        console.log(data,s)
+        try {
+            await axios.post('http://localhost:3000/api/Symptoms', newRecord);
+          } catch (error) {
+            console.log(error);
+          }
         if(data===1)
            {navigate("/doctorhome")}
         else{

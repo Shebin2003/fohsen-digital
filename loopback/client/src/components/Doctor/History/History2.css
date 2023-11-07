@@ -1,0 +1,16 @@
+.headings{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: red;
+    margin-left: -5%;
+    margin-top: 2%;
+    font-weight: 1000;
+}
+.headings2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+.labels{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    margin-left: 2%;
+}

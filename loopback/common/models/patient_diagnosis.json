@@ -42,7 +42,7 @@
         "dataLength": null,
         "dataPrecision": 10,
         "dataScale": 0,
-        "nullable": "Y"
+        "nullable": "N"
       }
     },
     "medicine": {
@@ -55,21 +55,6 @@
         "columnName": "medicine",
         "dataType": "varchar",
         "dataLength": 50,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      }
-    },
-    "type": {
-      "type": "String",
-      "required": false,
-      "length": 5,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "type",
-        "dataType": "enum",
-        "dataLength": 5,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "Y"

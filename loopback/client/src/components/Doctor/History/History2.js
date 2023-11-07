@@ -1,62 +1,61 @@
-import React,{useContext } from 'react'
-import './History1.css'
-import Consultationcontext from '../../../context/consultation/Consultationcontext'
+import React,{useContext,useEffect,useState} from 'react'
+import './History2.css'
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const History2 = () => {
   const location = useLocation();
   const data = location.state;
-  const c = useContext(Consultationcontext)
-  const values = []
-  c.map((option,index) =>{
-    if(option.id==data.id){
-      var temp= []
-      var clone = [...option.symptoms]
-      clone.map((obj)=>{
-        temp.push(obj.name,",")
-      })
-      option.symptoms2=temp.slice(0,temp.length-1)
-      values.push(option)
+  const [patientData,setPatienData] = useState({})
+  const [diagnosesData,setDiagnosesData] = useState([])
+  const [symptoms,setSymptoms] = useState([])
+  const [loading, setLoading] = useState(false);
+  useEffect(()=>{
+    async function fetchpatient(){
+      const request = await axios.get(`http://localhost:3000/patientdetails/?consultationId=${data.consultation_id}`)
+      let temp = request.data[0]
+      temp.age = temp['age'].slice(0,10)
+      setPatienData(temp)
+      return request
     }
-  })
-  console.log("values : ",values)
+    async function fetchdiagnoses(){
+      const request = await axios.get(`http://localhost:3000/api/PatientDiagnoses/?consultationId=${data.consultation_id}`)
+      setDiagnosesData(request.data)
+      return request
+    }
+    async function fetchsymptoms(){
+      const request = await axios.get(`http://localhost:3000/getsymptoms/?consultationId=${data.consultation_id}`)
+      setSymptoms(request.data)
+      return request
+    }
+    fetchpatient()
+    fetchdiagnoses()
+    fetchsymptoms()
+  },[])
+  
   return (
-    <div><br/>
-      <h1 className='headingss'> {data["name"]}</h1><br/>
-      <table className='table'>
-        <thead>
-            <tr>
-                <th>Number</th>
-                <th>Date</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Bp</th>
-                <th>Symptoms</th>
-                <th>Medicine</th>
-                <th>Notes</th>
-                <th>Diagnosed by</th>
-            </tr>
-         </thead>  
-         <tbody>
-         {values.map((option) => {
-            return (
-              <tr>
-                <td>{option.c_id}</td>
-                <td>{option.date}</td>
-                <td>{option.height}</td>
-                <td>{option.weight}</td>
-                <td>{option.bp }</td>
-                <td>{option.symptoms2}</td>
-                <td>{option.medicine}</td>
-                <td>{option.notes}</td>
-                <td>{option.diagnosedby}</td>
-              </tr>
-            );
-          })}  
-          </tbody>     
-      </table>
+    <div className='container'>
+        <h1 className='headings'>{patientData.name}</h1><br/>
+        <h3 className='headings2'>Age : {patientData["age"]}</h3>
+        <h3 className='headings2'>Bp : {patientData.Bp}</h3>
+        <h3 className='headings2'>Gender : {patientData.gender}</h3>
+        <h3 className='headings2'>Height : {patientData.height}</h3>
+        <h3 className='headings2'>Weight : {patientData.weight}</h3>
+        <h3 className='headings2'>Consultation by : {patientData.consultationBy}</h3>
+        <h3 className='headings2'>Temperature : {patientData.temperature}</h3>
+        <h3 className='headings2'>Symptoms   </h3>
+        <ul className='labels'>
+          {symptoms.map((option)=>{
+            return <li className='heading2'>{option.name}</li>
+          })}
+        </ul>
+        <h3 className='headings2'>Medicines given   </h3>
+        <ul className='labels'>
+          {diagnosesData.map((option)=>{
+            return <li className='heading2'>{option.MEDICINE}</li>
+          })}
+        </ul>
     </div>
   )
 }
-
 export default History2

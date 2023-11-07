@@ -2,6 +2,7 @@ import React,{useState } from 'react'
 import Button from '@mui/material/Button';
 import { useLocation,useNavigate } from "react-router-dom";
 import './Diagnosis.css'
+import axios from "axios";
 
 const Diagnosis = () => {
   const location = useLocation();
@@ -9,7 +10,7 @@ const Diagnosis = () => {
   const navigate = useNavigate();
 
   const [medicine,setMedicine] = useState([])
-  const [inputs,setInputs] = useState("")
+  var [inputs,setInputs] = useState()
 
   const handleChange = (event) => {
     setInputs(event.target.value)
@@ -19,9 +20,14 @@ const Diagnosis = () => {
     setMedicine(prev=>{return[...prev,inputs]})
   };
   
-  const handleSubmit = ()=>{
-    const output = medicine.join(",")
-    data["medicine"] = output
+  const handleSubmit = async()=>{
+    try 
+      {medicine.map((option,index) => {
+          axios.post('http://localhost:3000/api/PatientDiagnoses',{consultationId:data['consultationId'],medicine:option});
+        })
+    } catch (error) {
+      console.log(error);
+    }
     navigate("/notes",{ state:data })
 }
   

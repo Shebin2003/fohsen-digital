@@ -25,7 +25,7 @@
       }
     },
     "age": {
-      "type": "Number",
+      "type": "date",
       "required": false,
       "length": null,
       "precision": 10,
@@ -40,7 +40,7 @@
       }
     },
     "gender": {
-      "type": "Boolean",
+      "type": "String",
       "required": false,
       "length": 1,
       "precision": null,
@@ -71,7 +71,7 @@
     },
     "patientId": {
       "type": "Number",
-      "required": true,
+      "required": false,
       "length": null,
       "precision": 10,
       "scale": 0,

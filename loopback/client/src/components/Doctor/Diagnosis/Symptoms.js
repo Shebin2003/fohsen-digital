@@ -1,23 +1,37 @@
-import React,{ useContext,useState } from 'react'
+  import React,{ useContext,useState,useEffect } from 'react'
 import "./Symptoms.css"
 import { useNavigate,useLocation } from 'react-router-dom';
-import Symptomcontext from '../../../context/symptoms/Symptomcontext'
 import Button from '@mui/material/Button';
+import axios from "axios";
 
 const Symptoms = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
-  const s = useContext(Symptomcontext)
   
   const values = []
-  
+  const [fetchedData,setFetchedData] = useState([])
+  useEffect(()=>{
+    async function fetchdata(){
+      const request = await axios.get("http://localhost:3000/api/Symptoms")
+      setFetchedData(request.data)
+      return request
+    }
+    fetchdata()
+  },[])
   const handleInput = (event) => {
-    values.push({s_id:event.target.value,name:event.target.name})
+    values.push({symptoms:event.target.value,consultationId:data['consultationId'],notes:event.target.name})
   }
   
-  const handleSubmit = ()=>{
-    data.symptoms=values
+  const handleSubmit = async()=>{
+    try {
+      values.map((option,index) => {
+        axios.post('http://localhost:3000/api/PatientSymptoms', option);
+      })
+      
+    } catch (error) {
+      console.log(error);
+    }
     navigate("/diagnosis",{ state:data })
   }
   const changepage = ()=>{
@@ -38,10 +52,10 @@ const Symptoms = () => {
               </tr>
           </thead>
           <tbody>
-          {s.map((option, index) => {
+          {fetchedData.map((option, index) => {
             return (
               <tr>
-                <td>{<input type='checkbox'  onChange={handleInput} value={option.s_id}  name={option.name}></input>}</td>
+                <td>{<input type='checkbox'  onChange={handleInput} value={option.symptomId}  name={option.description}></input>}</td>
                 <td>{option["name"]}</td>
                 <td>{option["description"]}</td>
               </tr>

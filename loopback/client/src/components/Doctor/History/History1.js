@@ -1,11 +1,20 @@
-import React,{ useContext } from 'react'
+import React,{ useContext,useEffect,useState } from 'react'
 import './History1.css'
-import Detailscontext from '../../../context/details/Detailscontext'
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const History1 = () => {
-    const a = useContext(Detailscontext)
     const navigate = useNavigate();
+    const [consultationData,setConsultationData] = useState([])
+    
+    useEffect(()=>{
+      async function fetchconsultation(){
+        const request = await axios.get("http://localhost:3000/consultation2")
+        setConsultationData(request.data)
+        return request
+      }
+      fetchconsultation()
+    },[])
   return (
     <div>
         <table className='table'>
@@ -19,14 +28,14 @@ const History1 = () => {
                 </tr>
             </thead>
             <tbody>
-            {a.map((option, index) => {
+            {consultationData.map((option, index) => {            
             return (
               <tr key={index} onClick={() =>{
                         navigate("/history2", {state: option })
                         }}>
-                <td>{option["id"]}</td>
+                <td>{option["consultation_id"]}</td>
                 <td>{option["name"]}</td>
-                <td>{option["age"]}</td>
+                <td>{option["age"].slice(0,10)}</td>
                 <td>{option["gender"]}</td>
                 <td>{option["address"]}</td>
               </tr>

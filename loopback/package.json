@@ -28,6 +28,7 @@
     "moment": "^2.24.0",
     "mssql": "^6.1.0",
     "mysql": "^2.18.1",
+    "mysql2": "^3.6.3",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^3.0.0",
     "tedious": "^8.0.1"
