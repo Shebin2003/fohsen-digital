@@ -6,10 +6,9 @@
   "fohsenmysql": {
     "name": "fohsenmysql",
     "connector": "mysql",
-    "host": "localhost",
+    "host": "mysql",
     "port": 3306,
     "database": "digital_health",
-    "username": "fohsenuser",
-    "password": "Dhilruba123"
+    "username": "root"
   }
 }

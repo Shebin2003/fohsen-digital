@@ -5,10 +5,9 @@
 const { Router } = require('express')
 const mysql = require('mysql2')
 const db = mysql.createConnection({
-  user: "fohsenuser",
-  host:'localhost',
-  database: "digital_health",
-  password: "Dhilruba123"
+  user: "root",
+  host:'mysql',
+  database: "digital_health"
 })
 
 

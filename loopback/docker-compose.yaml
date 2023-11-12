@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  mysql:
+    image: "mysql"
+    volumes:
+      - data:/data/db
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - logs:/logs
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mysql
+    network_mode: "host"
+  frontend:
+    build: ./frontend
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./frontend/src:/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+
+volumes:
+  data:
+  logs:
