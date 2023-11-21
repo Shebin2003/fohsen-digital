@@ -2,7 +2,7 @@
 // Node module: loopback-getting-started
 
 'use strict';
-
+console.log("atuthentication file called")
 module.exports = function enableAuthentication(server) {
   // enable authentication
   server.enableAuth();

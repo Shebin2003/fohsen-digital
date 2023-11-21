@@ -23,11 +23,10 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.2.0",
     "loopback-component-storage": "^3.7.0",
-    "loopback-connector-mysql": "^5.4.2",
+    "loopback-connector-mysql": "7.0.3",
     "mkdirp": "^1.0.3",
     "moment": "^2.24.0",
     "mssql": "^6.1.0",
-    "mysql": "^2.18.1",
     "mysql2": "^3.6.3",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^3.0.0",
@@ -42,5 +41,5 @@
     "url": ""
   },
   "license": "UNLICENSED",
-  "description": "test_lb"
+  "description":"test_lb"
 }

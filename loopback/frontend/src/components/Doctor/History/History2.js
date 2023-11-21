@@ -12,20 +12,21 @@ const History2 = () => {
   const [loading, setLoading] = useState(false);
   useEffect(()=>{
     async function fetchpatient(){
-      const request = await axios.get(`http://localhost:3000/patientdetails/?consultationId=${data.consultation_id}`)
+      const request = await axios.get(`http://localhost:3001/patientdetails/?consultationId=${data.consultation_id}`)
       let temp = request.data[0]
       temp.age = temp['age'].slice(0,10)
       setPatienData(temp)
       return request
     }
     async function fetchdiagnoses(){
-      const request = await axios.get(`http://localhost:3000/api/PatientDiagnoses/?consultationId=${data.consultation_id}`)
+      const request = await axios.get(`http://localhost:3001/api/PatientDiagnoses/?consultationId=${data.consultation_id}`)
       setDiagnosesData(request.data)
       return request
     }
     async function fetchsymptoms(){
-      const request = await axios.get(`http://localhost:3000/getsymptoms/?consultationId=${data.consultation_id}`)
+      const request = await axios.get(`http://localhost:3001/getsymptoms/?consultationId=${data.consultation_id}`)
       setSymptoms(request.data)
+      console.log("symptoms : ",symptoms)
       return request
     }
     fetchpatient()

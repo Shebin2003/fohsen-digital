@@ -18,7 +18,7 @@ const handleSubmit = async() => {
     const date = today.getDate();
     const currentDate = year + "/" + month + "/" + date;
     try {
-      axios.post(`http://localhost:3000/api/Consultations/${data.consultation_id}/replace`,{notes:inputs,status:'completed',date:currentDate,patientId:data['patient_id']});
+      axios.post(`http://localhost:3001/api/Consultations/${data.consultation_id}/replace`,{notes:inputs,status:'completed',date:currentDate,patientId:data['patient_id']});
       navigate("/doctorhome")
     } catch (error) {
       console.log(error);

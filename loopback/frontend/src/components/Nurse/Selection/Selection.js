@@ -7,7 +7,7 @@ const Selection = () => {
     const [fetchedData,setFetchedData] = useState([])
     useEffect(()=>{
       async function fetchdata(){
-        const request = await axios.get("http://localhost:3000/api/Patients")
+        const request = await axios.get("http://localhost:3001/api/Patients")
         setFetchedData(request.data)
         return request
       }

@@ -21,8 +21,8 @@ const Basicdetails = () => {
         event.preventDefault()
         const newRecord = {...inputs}
         try {
-            const response = await axios.post('http://localhost:3000/api/Patients', newRecord);
-            axios.get("http://localhost:3000/api/Patients").then((response) => {
+            const response = await axios.post('http://localhost:3001/api/Patients', newRecord);
+            axios.get("http://localhost:3001/api/Patients").then((response) => {
                 const temp = response.data[response.data.length-1]
                 newRecord['patientId'] = temp.patientId
                 navigate("/prediagnosis",{ state:newRecord })

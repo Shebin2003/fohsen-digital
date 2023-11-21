@@ -2,20 +2,23 @@
 // Node module: loopback-getting-started
 
 'use strict';
+
+console.log("routes file starting")
+
+
 const { Router } = require('express')
 const mysql = require('mysql2')
 const db = mysql.createConnection({
-  user: "root",
-  host:'mysql',
-  database: "digital_health"
+  user: "mysql",
+  host:'mysqldb',
+  database: "database_name",
+  password: "root"
 })
-
-
 
 module.exports = function(app) {
   // Install a "/ping" route that returns "pong"
   app.get('/ping', function(req, res) {
-    res.send('pong');
+    res.send('hello');
   });
   app.get('/api/PatientDiagnoses',async(req,res)=>{
     const cid = req.query.consultationId
@@ -65,6 +68,17 @@ module.exports = function(app) {
   })
 
   app.get('/consultation2',async(req,res)=>{
+    const sql = `select patient.patient_id,name,consultation_id,gender,address,age from patient,consultation where consultation.patient_id=patient.patient_id order by consultation_id desc;`;
+    db.query(sql, (err, results) => {
+      if (err) {
+        console.error('Error executing SQL query: ' + err.message);
+        res.status(500).json({ error: 'Database error' });
+        return;
+      }
+    res.json(results);})
+  })
+
+  app.post('/consultation2',async(req,res)=>{
     const sql = `select patient.patient_id,name,consultation_id,gender,address,age from patient,consultation where consultation.patient_id=patient.patient_id order by consultation_id desc;`;
     db.query(sql, (err, results) => {
       if (err) {

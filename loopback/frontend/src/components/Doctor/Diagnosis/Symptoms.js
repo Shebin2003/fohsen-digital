@@ -13,7 +13,7 @@ const Symptoms = () => {
   const [fetchedData,setFetchedData] = useState([])
   useEffect(()=>{
     async function fetchdata(){
-      const request = await axios.get("http://localhost:3000/api/Symptoms")
+      const request = await axios.get("http://localhost:3001/api/Symptoms")
       setFetchedData(request.data)
       return request
     }
@@ -26,7 +26,8 @@ const Symptoms = () => {
   const handleSubmit = async()=>{
     try {
       values.map((option,index) => {
-        axios.post('http://localhost:3000/api/PatientSymptoms', option);
+        axios.post('http://localhost:3001/api/PatientSymptoms', option);
+        console.log("option :",option)
       })
       
     } catch (error) {
@@ -38,8 +39,8 @@ const Symptoms = () => {
     navigate("/addsymptoms", { state:data })
   }
   return (
-    <div>
-      <br/><h1 className='headings'>Select symptoms of patient</h1><nr/>
+    <div className='ll'>
+      <br/><h1 className='headingss'>Select symptoms of patient</h1><nr/>
       <div className='buttonss'>
       <Button variant="contained" color="success" onClick={handleSubmit} >Submit</Button>
       <Button variant="contained"  onClick={changepage}>Add new symptoms</Button></div>

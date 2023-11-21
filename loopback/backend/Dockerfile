@@ -1,11 +1,13 @@
 FROM node
 
-WORKDIR /pp
+WORKDIR /app
 
-COPY . . 
+COPY package.json .
 
 RUN npm install
 
-EXPOSE 3000
+COPY . .
+
+EXPOSE 3001
 
 CMD ["npm","start"]

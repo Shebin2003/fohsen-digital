@@ -20,7 +20,7 @@ const Addsymptoms = () => {
         event.preventDefault()
         const newRecord = {...inputs}
         try {
-            await axios.post('http://localhost:3000/api/Symptoms', newRecord);
+            await axios.post('http://localhost:3001/api/Symptoms', newRecord);
           } catch (error) {
             console.log(error);
           }

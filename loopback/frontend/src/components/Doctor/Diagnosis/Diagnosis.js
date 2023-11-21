@@ -23,7 +23,7 @@ const Diagnosis = () => {
   const handleSubmit = async()=>{
     try 
       {medicine.map((option,index) => {
-          axios.post('http://localhost:3000/api/PatientDiagnoses',{consultationId:data['consultationId'],medicine:option});
+          axios.post('http://localhost:3001/api/PatientDiagnoses',{consultationId:data['consultationId'],medicine:option});
         })
     } catch (error) {
       console.log(error);

@@ -9,7 +9,7 @@ const History1 = () => {
     
     useEffect(()=>{
       async function fetchconsultation(){
-        const request = await axios.get("http://localhost:3000/consultation2")
+        const request = await axios.get("http://localhost:3001/consultation2")
         setConsultationData(request.data)
         return request
       }

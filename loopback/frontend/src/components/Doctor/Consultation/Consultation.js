@@ -7,7 +7,7 @@ const Consultation = () => {
     const [consultationData,setConsultationData] = useState([])
     useEffect(()=>{
       async function fetchconsultation(){
-        const request = await axios.get("http://localhost:3000/consultation")
+        const request = await axios.get("http://localhost:3001/consultation")
         setConsultationData(request.data)
         return request
       }

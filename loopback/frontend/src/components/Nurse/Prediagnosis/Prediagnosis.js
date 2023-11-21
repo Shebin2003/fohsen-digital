@@ -27,12 +27,12 @@ const Prediagnosis = () => {
         event.preventDefault()
         const newRecord = {...inputs}
         try {
-            await axios.post('http://localhost:3000/api/Consultations', {patientId:data['patientId'],status:"pending"});
-            axios.get("http://localhost:3000/api/Consultations").then((response) => {
+            await axios.post('http://localhost:3001/api/Consultations', {patientId:data['patientId'],status:"pending"});
+            axios.get("http://localhost:3001/api/Consultations").then((response) => {
                 const temp = response.data[response.data.length-1]
                 newRecord['consultationId'] = temp.consultationId
                 newRecord['patientId'] = temp.patientId
-                axios.post('http://localhost:3000/api/PreDiagnoses', newRecord);
+                axios.post('http://localhost:3001/api/PreDiagnoses', newRecord);
             })
           } catch (error) {
             console.log(error);
