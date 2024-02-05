@@ -7,14 +7,14 @@ import axios from "axios";
 const Prediagnosis = () => {
     const location = useLocation();
     const data = location.state;
-
+    const staff_id = localStorage.getItem('staff_id')
     const [inputs , setInputs] = useState({
         height:"",
         weight:"",
         bp:"",
         date:"",
         temperature:"",
-        diagnosedby:"",
+        diagnosisBy:staff_id,
     })
     const handleInput = (event) => {
         const name = event.target.name;
@@ -28,6 +28,7 @@ const Prediagnosis = () => {
         const newRecord = {...inputs}
         try {
             await axios.post('http://localhost:3001/api/Consultations', {patientId:data['patientId'],status:"pending"});
+            console.log("newRecord",newRecord)
             axios.get("http://localhost:3001/api/Consultations").then((response) => {
                 const temp = response.data[response.data.length-1]
                 newRecord['consultationId'] = temp.consultationId
@@ -40,11 +41,6 @@ const Prediagnosis = () => {
           navigate("/nursehome") 
     }
 
-    
-    const options = [
-        {label:"alexa",value:"alexa"},
-        {label:"max",value:"max"}
-    ]
   return (
     <div className='container'>
         <div className='form'>
@@ -74,14 +70,7 @@ const Prediagnosis = () => {
                     Date :<br/>
                     <input className='input' name='date' type='date' placeholder='Date of consultation' onChange={handleInput} value={inputs.date}/>
                 </label><br/>
-                <label className='label'>
-                    Diagnosed by :<br/>
-                    <select onChange={handleInput} value={inputs.diagnosedby} name='diagnosedby' >
-                        {options.map((option) => (
-                            <option value={option.value}>{option.label}</option>
-                                ))}
-                    </select>
-                </label> <br/><br/>
+                
                 <Button variant="outline-success" size='lg' onClick={handleSubmit}>Submit</Button>
             </form>
         </div>

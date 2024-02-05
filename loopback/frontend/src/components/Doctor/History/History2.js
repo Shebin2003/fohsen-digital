@@ -2,6 +2,7 @@ import React,{useContext,useEffect,useState} from 'react'
 import './History2.css'
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import Table from 'react-bootstrap/Table';
 
 const History2 = () => {
   const location = useLocation();
@@ -33,29 +34,58 @@ const History2 = () => {
     fetchdiagnoses()
     fetchsymptoms()
   },[])
-  
   return (
     <div className='container'>
-        <h1 className='headings'>{patientData.name}</h1><br/>
-        <h3 className='headings2'>Age : {patientData["age"]}</h3>
-        <h3 className='headings2'>Bp : {patientData.Bp}</h3>
-        <h3 className='headings2'>Gender : {patientData.gender}</h3>
-        <h3 className='headings2'>Height : {patientData.height}</h3>
-        <h3 className='headings2'>Weight : {patientData.weight}</h3>
-        <h3 className='headings2'>Consultation by : {patientData.consultationBy}</h3>
-        <h3 className='headings2'>Temperature : {patientData.temperature}</h3>
-        <h3 className='headings2'>Symptoms   </h3>
-        <ul className='labels'>
+      <h1 className='headings'>{patientData.name}</h1><br/>
+      <Table striped bordered hover>
+        <tbody>
+        <tr>
+          <td className='table_heading'>DOB</td>
+          <td>{patientData["age"]}</td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Bp</td>
+          <td>{patientData.Bp}</td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Gender</td>
+          <td>{patientData.gender}</td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Height</td>
+          <td>{patientData.height}</td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Weight</td>
+          <td>{patientData.weight}</td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Consultation by</td>
+          <td>{patientData["consultation_by"]}</td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Temperature</td>
+          <td>{patientData.temperature}</td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Symptoms</td>
+          <td><ul>
           {symptoms.map((option)=>{
-            return <li className='heading2'>{option.name}</li>
+            return <li>{option.name}</li>
           })}
-        </ul>
-        <h3 className='headings2'>Medicines given   </h3>
-        <ul className='labels'>
+          </ul></td>
+        </tr>
+        <tr>
+          <td className='table_heading'>Medicine prescribed</td>
+          <td><ul>
           {diagnosesData.map((option)=>{
-            return <li className='heading2'>{option.MEDICINE}</li>
+            return <li >{option.MEDICINE}</li>
+            {console.log("medicine:",option.MEDICINE)}
           })}
-        </ul>
+          </ul></td>
+        </tr>
+        </tbody>
+      </Table>
     </div>
   )
 }

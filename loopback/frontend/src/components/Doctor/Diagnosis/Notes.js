@@ -10,7 +10,9 @@ const navigate = useNavigate();
 const [inputs , setInputs] = useState("")
 const handleChange = (event) => {
     setInputs(event.target.value);
-  };
+  }
+const consultation_by = localStorage.getItem('staff_id')
+console.log("sss",consultation_by)
 const handleSubmit = async() => {
     const today = new Date();
     const month = today.getMonth()+1;
@@ -18,7 +20,7 @@ const handleSubmit = async() => {
     const date = today.getDate();
     const currentDate = year + "/" + month + "/" + date;
     try {
-      axios.post(`http://localhost:3001/api/Consultations/${data.consultation_id}/replace`,{notes:inputs,status:'completed',date:currentDate,patientId:data['patient_id']});
+      axios.post(`http://localhost:3001/api/Consultations/${data.consultation_id}/replace`,{consultationBy:consultation_by,notes:inputs,status:'completed',date:currentDate,patientId:data['patient_id']});
       navigate("/doctorhome")
     } catch (error) {
       console.log(error);

@@ -5,7 +5,7 @@
 
 console.log("routes file starting")
 
-
+const bodyParser = require('body-parser');
 const { Router } = require('express')
 const mysql = require('mysql2')
 const db = mysql.createConnection({
@@ -88,4 +88,60 @@ module.exports = function(app) {
       }
     res.json(results);})
   })
+
+  app.post('/admin',bodyParser.json(),async(req,res)=>{
+      const data = req.body
+      if(data.password=="admin"){
+        res.send({status:"Authenticated"})
+        return;
+      }
+      else{
+        res.send({status:"notAuthenticated"})
+        return;
+      }
+  })
+
+  app.post('/addstaff',bodyParser.json(),async(req,res)=>{
+    const data = req.body
+    const sql = `insert into staff (type,name,password) values('${data.type}','${data.name}','${data.password}')`;
+    db.query(sql, (err, results) => {
+      if (err) {
+        console.error('Error executing SQL query: ' + err.message);
+        res.status(500).json({ error: 'Database error' });
+        return;
+      }
+    res.json(results);})
+  })
+  
+  app.post('/checklogin',bodyParser.json(),async(req,res)=>{
+    const data = req.body
+    const sql = `select staff_id,type,name from staff where name='${data.name}' and password='${data.password}';  `
+    db.query(sql, (err, results) => {
+      if (err) {
+        console.error('Error executing SQL query: ' + err.message);
+        res.status(500).json({ error: 'Database error' });
+        return;
+      }
+      if (results.length==0){
+        res.send({status:"does not exist"})
+        return
+      }
+      else{
+        if(results[0].type=='doctor'){
+          res.send({status:"doctor",staff_id:results[0].staff_id})
+          return
+        }
+        else if(results[0].type=="nurse"){
+          res.send({status:"nurse",staff_id:results[0].staff_id})
+          return
+        }
+        else{
+          res.send({status:"error"})
+          return
+        }
+      }
+    })
+  })
+  
+  
 };

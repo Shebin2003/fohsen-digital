@@ -10,9 +10,13 @@ import Consultationpage from './pages/Doctor/Consultationpage'
 import Historypage1 from './pages/Doctor/Historypage1'
 import Historypage2 from './pages/Doctor/Historypage2'
 import Diagnosispage from './pages/Doctor/Diagnosispage'
+import Home from './pages/Home'
+import Adminloginpage from './pages/Admin/Adminloginpage'
+import Adminnewregisterpage from './pages/Admin/Adminnewregisterpage'
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import Addsymptomspage from './pages/Doctor/Addsymptomspage'
 import Notespage from './pages/Doctor/Notespage'
+import Adminviewpage from './pages/Admin/Adminviewpage'
 document.body.style = 'background: black;'
 
 function App() {
@@ -20,7 +24,11 @@ function App() {
     <>
     <BrowserRouter>
         <Routes>
-            <Route path='/' Component={Loginpage}/>
+            <Route path='/' Component={Home}/>
+            <Route path='/loginpage' Component={Loginpage}/>
+            <Route path='/adminlogin' Component={Adminloginpage}/>
+            <Route path='/adminnewregister' Component={Adminnewregisterpage}/>
+            <Route path='/adminviewpage' Component={Adminviewpage}/>
             <Route path='/nursehome' Component={Homepage}/>
             <Route path='/register' Component={Registrationpage}/>
             <Route path='/prediagnosis' Component={Prediagnosispage}/>

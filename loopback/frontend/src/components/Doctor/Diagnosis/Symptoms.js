@@ -20,14 +20,14 @@ const Symptoms = () => {
     fetchdata()
   },[])
   const handleInput = (event) => {
-    values.push({symptoms:event.target.value,consultationId:data['consultationId'],notes:event.target.name})
+    values.push({symptoms:event.target.value,consultationId:data.consultation_id,notes:event.target.name})
   }
   
   const handleSubmit = async()=>{
     try {
       values.map((option,index) => {
         axios.post('http://localhost:3001/api/PatientSymptoms', option);
-        console.log("option :",option)
+        console.log("option :,symptoms",option)
       })
       
     } catch (error) {

@@ -34,7 +34,7 @@ async function foo(){
   const [rows1, fields1] = await connection.execute(patient);
   console.log("patient Table created");
 
-  let staff = "create table if not exists staff(staff_id int primary key auto_increment not null,type enum('doctor','nurse'),name varchar(50),age date);";
+  let staff = "create table if not exists staff(staff_id int primary key auto_increment not null,type enum('doctor','nurse'),name varchar(50),password varchar(35));";
   const [rows2, fields2] = await connection.execute(staff);
   console.log("Staff Table created");
 
